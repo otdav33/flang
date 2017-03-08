@@ -40,10 +40,10 @@ When a keyboard takes an input, it gives a value from the console (terminal) as 
 #### Second Program
 Take five characters, printing each.
 ###### picture
-### Same
-Same takes two inputs, one on the top left, and the other on the top right.
-It gives two inputs, one on the bottom left, and the other on the bottom right.
-Once it takes both inputs, if they are equal, it will output the left input on the bottom left; if they are not equal, it will output the left input on the bottom left.
+### Equality
+Equality takes three inputs, one on the top left, one on the top middle and the last on the top right.
+It gives two outputs, one on the bottom left, and the other on the bottom right.
+Once it takes all inputs, if the outermost are equal, it will output the middle input on the bottom left; if they are not equal, it will output the middle input on the bottom left.
 ###### picture
 #### Third Program
 If z is inputted, say ":)"
@@ -60,15 +60,15 @@ It gives left input - right input as an output.
 ###### picture
 ### Multiplication and Division carry the pattern.
 ### Greater than (>)
-It gives the left input if left input > right input on the left output.
-Otherwise, it gives the left input on the right output.
+It gives the middle input if left input > right input on the left output.
+Otherwise, it gives the middle input on the right output.
 ###### picture
 #### Fifth Program
 Determine if the input is greater than f.
 ###### picture
 ### Less than (\<)
-It gives the left input if left input < right input on the left output.
-Otherwise, it gives the left input on the right output.
+It gives the middle input if left input < right input on the left output.
+Otherwise, it gives the middle input on the right output.
 ###### picture
 ### Function
 You can create custom functions in flang. They need to have their own name, number of inputs and outputs, and logic.
@@ -99,6 +99,9 @@ The leftmost member will walk over to become the rightmost member.
 To get the leftmost member of a bus, rotate left then pop.
 ### Rotate Right
 The rightmost member will walk over to become the leftmost member.
+###### picture
+### Length
+It will output the number of arrows in the inputted bus.
 ###### picture
 ## Language Features
 ### You can include C libraries.
