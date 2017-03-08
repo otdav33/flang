@@ -1,0 +1,6 @@
+o test to make sure you can write all needed programs in language
+o write practice programs.
+o Make feature-to-feature docs
+o make compiler
+o Make good tutorial
+o Make good editor

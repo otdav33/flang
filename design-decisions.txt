@@ -1,0 +1,3 @@
+We won't use UML because it's too different from what we want.
+The compiler should go from svg to C.
+The editor should edit svg.
