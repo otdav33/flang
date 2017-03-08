@@ -1,0 +1,23 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Flang</title>
+<defs>
+<g id="Start" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="-16" r="16"/>
+<path d="M -16 -16 C -16 0 0 16 0 32"/>
+</g>
+<g id="End" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="16" r="16"/>
+<path d="M 0 -32 C 0 -16 16 0 16 16"/>
+</g>
+<g id="Print" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
+<path d="M -32 0 C -16 -32 16 -32 32 0"/>
+<path d="M -32 0 C -16 32 16 32 32 0"/>
+<rect x="-16" y="-16" width="32" height="28" rx="2" ry="2" stroke-width="2"/>
+<rect x="-13" y="-13" width="26" height="22" fill="black" stroke-width="2"/>
+<text x="-12" y="-3" font-size="9" stroke="none" fill="white">Print</text>
+<rect x="-8" y="12" width="16" height="4" fill="black" stroke="transparent"/>
+<rect x="-10" y="15" width="20" height="2" rx="2" ry="2" stroke-width="2"/>
+</g>
+</defs>
+<use x="50" y="50" xlink:href="#Print" />
+</svg>
