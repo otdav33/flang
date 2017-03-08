@@ -34,7 +34,7 @@ One looks like this:
 You could try this:
 ###### picture using 11 start/constant/print triplets
 but the letters would be out of order.
-### keyboard
+### Keyboard
 When a keyboard takes an input, it gives a value from the console (terminal) as output.
 ###### picture
 #### Second Program
