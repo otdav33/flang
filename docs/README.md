@@ -40,6 +40,10 @@ When a keyboard takes an input, it gives a value from the console (terminal) as 
 #### Second Program
 Take five characters, printing each.
 ###### picture
+### Left
+Left takes two inputs and outputs the left one.
+###### picture
+#### Program
 ### Equality
 Equality takes three inputs, one on the top left, one on the top middle and the last on the top right.
 It gives two outputs, one on the bottom left, and the other on the bottom right.
@@ -65,10 +69,6 @@ Otherwise, it gives the middle input on the right output.
 ###### picture
 #### Fifth Program
 Determine if the input is greater than f.
-###### picture
-### Less than (\<)
-It gives the middle input if left input < right input on the left output.
-Otherwise, it gives the middle input on the right output.
 ###### picture
 ### Function
 You can create custom functions in flang. They need to have their own name, number of inputs and outputs, and logic.
