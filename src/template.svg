@@ -84,6 +84,7 @@
 <use x="750" y="50" xlink:href="#Greater"/>
 <use x="850" y="50" xlink:href="#Sum"/>
 <use x="50" y="150" xlink:href="#Difference"/>
+<path d="M 50 82 C 50 98 28 131 36 142" stroke-width="4" stroke="navy" fill="transparent" stroke-linecap="round"/>
 <use x="150" y="150" xlink:href="#Product"/>
 <use x="250" y="150" xlink:href="#Quotient"/>
 </svg>
