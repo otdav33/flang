@@ -1,0 +1,10 @@
+<svg width="70" height="70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Flang</title>
+<defs>
+<g id="Start" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="-16" r="16"/>
+<path d="M -16 -16 C -16 0 0 16 0 32"/>
+</g>
+</defs>
+<use x="35" y="35" xlink:href="#Start"/>
+</svg>

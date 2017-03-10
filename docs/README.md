@@ -10,11 +10,11 @@ Flang is a functional language, which means it's made of functions. Functions ta
 Aren't they cute? The computer loves to pick and choose among its babies, so it sends outputs to inputs along arrows in any order it wants, as long as the function is ready with the outputs.
 Arrows are NOT functions.
 Functions are drawn as something inside a polygon or a lemon shape instead of a 2-gon.
-###### picture (examples)
+![functions](/src/default_theme.svg)
 ### Start
 It is not a function.
 It looks like a "9" with an arrow going out the bottom.
-###### picture
+![Start](/docs/images/start.svg)
 It is where the flow of the program starts. The flow is the places where the computer is reading the program at the moment. You can think of it as a function that will start the program, give a 0, but take nothing. 
 By itself, it is a complete program. If you run it, the program will do nothing.
 The smallest program has the same effect and is composed of nothing, nothing, and more nothing.
