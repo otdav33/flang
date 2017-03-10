@@ -14,14 +14,14 @@
 <rect x="-8" y="12" width="16" height="4" fill="black" stroke="transparent"/>
 <rect x="-10" y="15" width="20" height="2" rx="2" ry="2" stroke-width="2"/>
 </g>
-<g id="Constant" stroke-width="4" stroke="black" fill="transparent">
-<RECT X="-32" Y="-32" WIDTH="64" HEIGHT="64"/>
+<g id="Constant" stroke-width="4" stroke="black" fill="white">
+<rect x="-32" y="-32" width="64" height="64"/>
 </g>
 </defs>
-<path d="M 35 67 C 35 70 35 131 36 142" stroke-width="4" stroke="navy" fill="transparent" stroke-linecap="butt"/>
+<path d="M 35 131 C 35 134 35 140 35 150" stroke-width="4" stroke="navy" fill="transparent" stroke-linecap="butt"/>
 <use x="35" y="35" xlink:href="#Start"/>
-<use x="35" y="99" xlink:href="#Constant">
-<text 
-</use>
-<use x="35" y="50" xlink:href="#Print"/>
+<use x="35" y="99" xlink:href="#Constant"/>
+<text x="35" y="123" font-size="64" text-anchor="middle">H</text> <!--texts need a 40px offset below center of constant.-->
+<use x="35" y="182" xlink:href="#Print"/>
+<use x="35" y="246" xlink:href="#End"/>
 </svg>
