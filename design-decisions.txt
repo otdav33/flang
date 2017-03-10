@@ -1,4 +1,0 @@
-We won't use UML because it's too different from what we want.
-The compiler should go from svg to C.
-The editor should edit svg.
-I don't think we should have an end statement because it is unnecesary. You could have an infinite amount of end statements coming off of everything and it wouldn't make a difference.
