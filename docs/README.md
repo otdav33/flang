@@ -10,7 +10,7 @@ Flang is a functional language, which means it's made of functions. Functions ta
 Aren't they cute? The computer loves to pick and choose among its babies, so it sends outputs to inputs along arrows in any order it wants, as long as the function is ready with the outputs.
 Arrows are NOT functions.
 Functions are drawn as something inside a polygon or a lemon shape instead of a 2-gon.
-![functions](/src/default_theme.svg)
+<object data="/src/default_theme.svg" type="image/svg+xml"></object>
 ### Start
 It is not a function.
 It looks like a "9" with an arrow going out the bottom.
