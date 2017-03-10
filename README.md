@@ -1,1 +1,1 @@
-![docs](https://otdav33.github.io/flang)
+[docs](https://otdav33.github.io/flang)
