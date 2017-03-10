@@ -1,0 +1,27 @@
+<svg width="70" height="400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<g id="Start" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="-16" r="16"/>
+<path d="M -16 -16 C -16 0 0 16 0 32"/>
+</g>
+<g id="End" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="16" r="16"/>
+<path d="M 0 -32 C 0 -16 16 0 16 16"/>
+</g>
+<g id="Print" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
+<circle cx="0" cy="0" r="32" fill="white"/>
+<rect x="-16" y="-16" width="32" height="28" rx="2" ry="2" stroke-width="2"/>
+<rect x="-8" y="12" width="16" height="4" fill="black" stroke="transparent"/>
+<rect x="-10" y="15" width="20" height="2" rx="2" ry="2" stroke-width="2"/>
+</g>
+<g id="Constant" stroke-width="4" stroke="black" fill="transparent">
+<RECT X="-32" Y="-32" WIDTH="64" HEIGHT="64"/>
+</g>
+</defs>
+<path d="M 35 67 C 35 70 35 131 36 142" stroke-width="4" stroke="navy" fill="transparent" stroke-linecap="butt"/>
+<use x="35" y="35" xlink:href="#Start"/>
+<use x="35" y="99" xlink:href="#Constant">
+<text 
+</use>
+<use x="35" y="50" xlink:href="#Print"/>
+</svg>
