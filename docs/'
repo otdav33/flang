@@ -11,7 +11,7 @@
 <p>Aren't they cute? The computer loves to pick and choose among its babies, so it sends outputs to inputs along arrows in any order it wants, as long as the function is ready with the outputs.</p>
 <p>Arrows are NOT functions.</p>
 <p>Functions are drawn as something inside a polygon or a lemon shape instead of a 2-gon.</p>
-<object data="icons/show_theme.svg" type="image/svg+xml"></object>
+<object data="icons/default_theme.svg" type="image/svg+xml"></object>
 <h3>Start</h3>
 <p>It is not a function.</p>
 <p>It looks like a "9" with an arrow going out the bottom.</p>
@@ -70,7 +70,7 @@
 <h3>Equality</h3>
 <p>Equality takes three inputs, one on the top left, one on the top middle and the last on the top right.</p>
 <p>It gives two outputs, one on the bottom left, and the other on the bottom right.</p>
-<p>Once it takes all inputs, if the outermost are equal, it will output the middle input on the bottom left; if they are not equal, it will output the middle input on the bottom right.</p>
+<p>Once it takes all inputs, if the outermost are equal, it will output the middle input on the bottom left; if they are not equal, it will output the middle input on the bottom left.</p>
 <h6>picture</h6>
 <h4>Program</h4>
 <p>If f is inputted, say ":)"</p>
@@ -86,29 +86,41 @@
 <p>It uses alphabetical order.</p>
 <h6>picture</h6>
 <h4>Program</h4>
-<p>Print &gt; if the input is greater than f. Otherwise, print &lt;</p>
+<p>Determine if the input is greater than f.</p>
 <h6>picture</h6>
+<h4>Info</h4>
+<p>Numbers are the same type as letters in flang. To distinguish them, use letters with functions that use letters, and numbers with functions that use numbers.</p>
+<p>To get back and forth, you can use a letter as a number to get its ASCII number, and a number as a letter to get the letter for the ASCII number.</p>
+<p>For example, if you send print the number 97, you will get an a on your terminal.</p>
+<h3>Character to Number</h3>
+<p>It will turn a character (the kind of value print gives, usually a letter) into a number. The character for 1 will go to 1, for example.</p>
+<h3>Number to Character</h3>
+<p>It will turn a number into a character. The character for 1 will go to 1, for example.</p>
+<h4>Program</h4>
+<p>Add two inputted values together, and return them.</p>
+<p><h6>picture</h6> will make 1 + 1 = b 
 <h3>Sum</h3>
 <p>It gives the sum of its two inputs as an output.</p>
 <h6>picture</h6>
-<h4>Program</h4>
-<p>Output the sum of a and 3.</p>
-<h6>picture (put "a+3=d" somewhere in it.)</h6>
+<h4>Fourth Program</h4>
+<p>Output the sum of two and three.</p>
+<h6>picture</h6>
 <h3>Difference</h3>
 <p>It gives left input - right input as an output.</p>
 <h6>picture</h6>
-<h4>Program</h4>
-<p>Output the difference between a and 3.</p>
-<h6>picture (put "a+3=d" somewhere in it.)</h6>
 <h3>Multiplication and Division carry the pattern.</h3>
-<h6>picture for both</h6>
+<h3>Function</h3>
+<p>You can create custom functions in flang. They need to have their own name, number of inputs and outputs, and logic.</p>
+<p>They look like this.</p>
+<h6>picture</h6>
+<h4>Sixth Program</h4>
+<p>Print the letter "q" sixteen times.</p>
+<h6>picture</h6>
 <h3>Bus</h3>
 <p>Busses are not functions.</p>
 <p>They are a group of arrows, all going in the same direction.</p>
 <p>They walk side-by-side, going at the same pace.</p>
 <p>They are usually much neater than having an arbitrary number of arrows.</p>
-<h6>picture of a few examples -- should just be orange arrows of width six (argue me on this point, please.)</h6>
-<p>They are not actually groups of arrows. You can't separate them out just by branching them off or add to them by branching in</p>
 <h3>Push</h3>
 <p>Push has two inputs; the left takes a bus and the right takes a value (arrow).</p>
 <p>It has one output: the group on the left with the arrow on the right attatched to the right side.</p>
@@ -129,14 +141,6 @@
 <h6>picture</h6>
 <h3>Length</h3>
 <p>It will output the number of arrows in the inputted bus.</p>
-<h6>picture</h6>
-<h3>Number to Characters</h3>
-<h3>Function</h3>
-<p>You can create custom functions in flang. They need to have their own name, number of inputs and outputs, and logic.</p>
-<p>They look like this.</p>
-<h6>picture</h6>
-<h4>Sixth Program</h4>
-<p>Print the letter "q" sixteen times.</p>
 <h6>picture</h6>
 <h2>Language Features</h2>
 <h3>You can include C libraries.</h3>
