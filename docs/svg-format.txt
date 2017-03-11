@@ -1,4 +1,4 @@
 Functions should be connected by paths.
-Functions should be about 64x64 pixels, though they could be bigger.
+Functions should be about 64x64 pixels, though they could be smaller.
 The paths should be cubic bezier curves, with the end points on the midpoint of the side of the function, and the control point on the line perpendicular to the function, 16px away.
 stroke-linecap="butt" for paths

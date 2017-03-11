@@ -1,6 +1,14 @@
+o Make good tutorial
+	-needs pictures
+o Make editor
+	-first phase is drag&drop functions ==> svg
+	-second phase has arrows (press spacebar to start, spacebar to end)
+	-third phase has bindings for base functions
+	-function makers
+	-w/ a binding
+	-custom functions with automatic color-name table
+	-w/ a binding
 o test to make sure you can write all needed programs in language
 o write practice programs.
 o Make feature-to-feature docs
 o make compiler
-o Make good tutorial
-o Make good editor
