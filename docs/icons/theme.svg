@@ -149,32 +149,6 @@
 <line x1="-8" x2="-8" y1="-16" y2="16"/>
 <line x1="8" x2="8" y1="-16" y2="16"/>
 </g>
-<g id="##" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<line x1="-8" x2="8" y1="-4" y2="-4"/>
-<line x1="-8" x2="8" y1="4" y2="4"/>
-<line x1="-4" x2="-4" y1="-8" y2="8"/>
-<line x1="4" x2="4" y1="-8" y2="8"/>
-</g>
-<g id="#c" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<path d="M 5.5 5.5 A 8 8 0 1 1 5.5 -5.5"/>
-</g>
-<g id="#arrowaround" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<path d="M -12 -12 A 12 12 0 1 1 -12 12"/>
-<line x1="-12" x2="-8" y1="12" y2="8"/>
-<line x1="-12" x2="-8" y1="12" y2="16"/>
-</g>
-<g id="N2C" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<use x="0" y="0" xlink:href="##11"/>
-<use x="-8" y="-12" xlink:href="###"/>
-<use x="-8" y="12" xlink:href="##c"/>
-<use x="20" y="0" xlink:href="##arrowaround"/>
-</g>
-<g id="C2N" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<use x="0" y="0" xlink:href="##11"/>
-<use x="-8" y="-12" xlink:href="##c"/>
-<use x="-8" y="12" xlink:href="###"/>
-<use x="20" y="0" xlink:href="##arrowaround"/>
-</g>
 </defs>
 <title>Flang</title>
 <path d="M 50 82 C 50 98 28 131 36 142" stroke-width="4" stroke="navy" fill="transparent" stroke-linecap="butt" marker-end="url(##arrowhead)"/>
@@ -194,7 +168,5 @@
 <use x="150" y="350" xlink:href="#RotateLeft"/>
 <use x="250" y="350" xlink:href="#RotateRight"/>
 <use x="350" y="350" xlink:href="#Length"/>
-<use x="50"  y="450" xlink:href="#N2C"/>
-<use x="150" y="450" xlink:href="#C2N"/>
-<use x="250" y="450" xlink:href="#End"/>
+<use x="50" y="450" xlink:href="#End"/>
 </svg>
