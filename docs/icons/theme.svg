@@ -80,12 +80,9 @@
 <rect x="-16" y="-3" width="32" height="15" rx="2" ry="2"/>
 <path d="M -12 -3 C -12 -15 0 -25 0 -32"/>
 </g>
-<clipPath id="uptriangle">
-<polygon points="0 -32 -28 16 28 16"/>
-</clipPath>
 <g id="Left" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
 <use x="0" y="0" xlink:href="##21"/>
-<path d="M -14 -8 C -22 -19 0 4 0 16" clip-path="url(#uptriangle)"/>
+<path d="M -14 -8 C -7 -4 0 8 0 16"/>
 </g>
 <g id="Equal" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
 <use x="0" y="0" xlink:href="##32"/>
@@ -117,30 +114,32 @@
 <circle cx="0" cy="-7" r="3" stroke-width="3"/>
 <circle cx="0" cy="7" r="3" stroke-width="3"/>
 </g>
-<g id="Push" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
+<g id="Push" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
 <use x="0" y="0" xlink:href="##21"/>
-<path d="M -14 -8 C -22 -19 0 4 0 16" stroke-width="6" clip-path="url(#uptriangle)"/>
-<path d="M 14 -8 C 22 -19 0 4 0 16" stroke-width="4" clip-path="url(#uptriangle)"/>
+<path d="M -14 -8 C -7 -4 0 8 0 16" stroke-width="6"/>
+<path d="M 14 -8 C 7 -4 0 8 0 16" stroke-width="4"/>
 </g>
-<clipPath id="downtriangle">
-<polygon points="0 32 -28 -16 28 -16"/>
-</clipPath>
-<g id="Pop" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
+<g id="Scan" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
 <use x="0" y="0" xlink:href="##12"/>
-<path d="M -14 8 C -22 19 0 -4 0 -16" stroke-width="6" clip-path="url(#downtriangle)"/>
-<path d="M 14 8 C 22 19 0 -4 0 -16" stroke-width="4" clip-path="url(#downtriangle)"/>
+<path d="M -14 8 C -7 4 0 -8 0 -16" stroke-width="6"/>
+<path d="M 14 8 C 7 4 0 -8 0 -16" stroke-width="4"/>
+</g>
+<g id="Pop" stroke-linecap="butt" stroke-width="4" stroke="black" fill="transparent">
+<use x="0" y="0" xlink:href="##12"/>
+<path d="M -14 8 C -7 4 0 -8 0 -16" stroke-width="4"/>
+<path d="M 14 8 C 7 4 0 -8 0 -16" stroke-width="4"/>
 </g>
 <g id="RotateLeft" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<use x="0" y="0" xlink:href="##11"/>
-<path d="M -19 0 A 19 19 0 1 1 0 19"/>
-<line x1="-19" x2="-24" y1="0" y2="-5"/>
-<line x1="-19" x2="-14" y1="0" y2="-5"/>
+<use x="0" y="0" xlink:href="##21"/>
+<path d="M -10 0 A 10 10 0 1 1 0 10"/>
+<line x1="-10" x2="-13" y1="0" y2="-3"/>
+<line x1="-10" x2="-7" y1="0" y2="-3"/>
 </g>
 <g id="RotateRight" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
-<use x="0" y="0" xlink:href="##11"/>
-<path d="M 0 19 A 19 19 0 1 1 19 0"/>
-<line x1="19" x2="24" y1="0" y2="-5"/>
-<line x1="19" x2="14" y1="0" y2="-5"/>
+<use x="0" y="0" xlink:href="##21"/>
+<path d="M 0 10 A 10 10 0 1 1 10 0"/>
+<line x1="10" x2="13" y1="0" y2="-3"/>
+<line x1="10" x2="7" y1="0" y2="-3"/>
 </g>
 <g id="Length" stroke-linecap="round" stroke-width="4" stroke="black" fill="transparent">
 <use x="0" y="0" xlink:href="##11"/>
@@ -164,9 +163,10 @@
 <use x="150" y="250" xlink:href="#Product"/>
 <use x="250" y="250" xlink:href="#Quotient"/>
 <use x="350" y="250" xlink:href="#Push"/>
-<use x="50"  y="350" xlink:href="#Pop"/>
-<use x="150" y="350" xlink:href="#RotateLeft"/>
-<use x="250" y="350" xlink:href="#RotateRight"/>
-<use x="350" y="350" xlink:href="#Length"/>
-<use x="50" y="450" xlink:href="#End"/>
+<use x="50"  y="350" xlink:href="#Scan"/>
+<use x="150"  y="350" xlink:href="#Pop"/>
+<use x="250" y="350" xlink:href="#RotateLeft"/>
+<use x="350" y="350" xlink:href="#RotateRight"/>
+<use x="50" y="450" xlink:href="#Length"/>
+<use x="150" y="450" xlink:href="#End"/>
 </svg>
