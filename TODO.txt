@@ -12,3 +12,6 @@ o test to make sure you can write all needed programs in language
 o write practice programs.
 o Make feature-to-feature docs
 o make compiler
+	1. make the compiler work on linear logic flows
+	2. support branching
+	3. support looping
