@@ -1,0 +1,159 @@
+<h1>flang</h1>
+<p>A simple flow chart programming language</p>
+<p>"F" is for flow chart.</p>
+<p>"F" is for functional.</p>
+<p>"lang" is for programming language.</p>
+
+<h1>Tutorial</h1>
+<p>Flang is a functional language, which means it's made of functions. Functions take input(s) and give output(s). Some people call these arguments and return values, respectively. The outputs of functions are sent to inputs of others along arrows. Arrows are navy curves.</p>
+<p>They look like this:</p>
+<h6>picture of a bunch of arrows.</h6>
+<p>Aren't they cute? The computer loves to pick and choose among its babies, so it sends outputs to inputs along arrows in any order it wants, as long as the function is ready with the outputs.</p>
+<p>Arrows are NOT functions.</p>
+<p>Functions are drawn as something inside a polygon or a lemon shape instead of a 2-gon.</p>
+<object data="icons/theme.svg" type="image/svg+xml"></object>
+<h3>Start</h3>
+<p>It is not a function.</p>
+<p>It looks like a "9" with an arrow going out the bottom.</p>
+<object data="icons/start.svg" type="image/svg+xml"></object>
+<h6>fix above picture (put all pictures in /docs/icons/)</h6>
+<p>It is where the flow of the program starts. The flow is the places where the computer is reading the program at the moment. You can think of it as a function that will start the program, give a 0, but take nothing. </p>
+<p>By itself, it is a complete program. If you run it, the program will do nothing.</p>
+<p>The smallest program has the same effect and is composed of nothing, nothing, and more nothing.</p>
+<h3>Print</h3>
+<p>Assume every heading is for a function.</p>
+<p>It takes a value, prints it to the console (terminal), and gives it back.</p>
+<h6>picture</h6>
+<h3>Constant</h3>
+<p>A constant is a box with a value in it.</p>
+<h6>picture</h6>
+<p>When a constant takes an input, it gives its value as output.</p>
+<h4>Program</h4>
+<p>Now, we have enough knowledge to make "Hello world!" programs.</p>
+<p>Let's try to print "H" to the terminal.</p>
+<h6>o->[H]->print-o</h6>
+<h4>Program</h4>
+<p>Let's try to print "HW" to the terminal in a different program.</p>
+<p>Please try on your own, and if it doesnt' compile to the assignment, try again until you click on one of these links for an answer.
+<p>One way looks like this: </p>
+<h6>picture using a start, then 2 constant/print pairs, end</h6>
+<p>You could try one of these instead</p>
+<h6>picture using a 2 start/constant/print/end quadruplets</h6>
+<h6>picture using a 2 start/constant/print triplets that merge into an end</h6>
+<h6>picture using a start that branches off to 2 constant/print/end quadruplets</h6>
+<h6>picture using a start that branches off to 2 constant/print pairs, then merges into an end</h6>
+<p>but the letters could be out of order. It's best practice to use only one start.</p>
+<h3>Keyboard</h3>
+<p>When a keyboard takes an input, it gives a value from the console (terminal) as output.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Print an inputted character.</p>
+<h6>o->keyboard->print-o</h6>
+<h4>Program</h4>
+<p>Take two characters, printing each in order.</p>
+<h6>pictures of paralell and series I->P pairs</h6>
+<h4>Program</h4>
+<p>Print every inputted character.</p>
+<h6>looped version of two programs back</h6>
+<h3>Left</h3>
+<p>Left takes two inputs and outputs the left one.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Take two characters, printing the first after the second is inputted.</p>
+<h6>pictures of paralell and series I->P pairs</h6>
+<h4>Program</h4>
+<p>Print every second character</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Print the first of every two characters entered once both are inputted.</p>
+<h6>picture</h6>
+<h3>Equality</h3>
+<p>Equality takes three inputs, one on the top left, one on the top middle and the last on the top right.</p>
+<p>It gives two outputs, one on the bottom left, and the other on the bottom right.</p>
+<p>Once it takes all inputs, if the outermost are equal, it will output the middle input on the bottom left; if they are not equal, it will output the middle input on the bottom right.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>If f is inputted, say ":)"</p>
+<p>Otherwise, say ":("</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>If "df" is inputted, say ":)"</p>
+<p>Otherwise, say ":("</p>
+<h6>picture</h6>
+<h3>Greater than (&gt;)</h3>
+<p>It gives the middle input if left input &gt; right input on the left output.</p>
+<p>Otherwise, it gives the middle input on the right output.</p>
+<p>It uses alphabetical order.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Print &gt; if the input is greater than f. Otherwise, print &lt;</p>
+<h6>picture</h6>
+<h3>Sum</h3>
+<p>It gives the sum of its two inputs as an output.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Output the sum of a and 3.</p>
+<h6>picture (put "a+3=d" somewhere in it.)</h6>
+<h3>Difference</h3>
+<p>It gives left input - right input as an output.</p>
+<h6>picture</h6>
+<h4>Program</h4>
+<p>Output the difference between a and 3.</p>
+<h6>picture (put "a+3=d" somewhere in it.)</h6>
+<h3>Multiplication and Division carry the pattern.</h3>
+<h6>picture for both</h6>
+<h3>Bus</h3>
+<p>Busses are not functions.</p>
+<p>They are a group of arrows, all going in the same direction.</p>
+<p>They walk side-by-side, going at the same pace.</p>
+<p>They are usually much neater than having an arbitrary number of arrows.</p>
+<h6>picture of a few examples -- should just be orange arrows of width six (argue me on this point, please.)</h6>
+<p>They are not actually groups of arrows. You can't separate them out just by branching them off or add to them by branching in</p>
+<p>You may initialize a bus with a constant with two quotes in it</p>
+<h6>picture</h6>
+<h3>Push</h3>
+<p>Push has two inputs; the left takes a bus and the right takes a value (arrow).</p>
+<p>It has one output: the group on the left with the arrow on the right attatched to the right side.</p>
+<h6>picture</h6>
+<h6>example</h6>
+<h6>example</h6>
+<h3>Scan</h3>
+<p>Scan takes a bus and gives it on the left output.</p>
+<p>It also gives it's rightmost member on the right output.</p>
+<h6>picture</h6>
+<h6>example</h6>
+<h3>Pop</h3>
+<p>Pop takes a bus.</p>
+<p>It gives that bus without its rightmost member on the left output, and that rightmost member on the right output.</p>
+<h6>picture</h6>
+<h6>example</h6>
+<h3>Rotate Left</h3>
+<p>The leftmost member will walk over to become the rightmost member the number of times specified on the right input.</p>
+<h6>picture</h6>
+<p>To get the leftmost member of a bus, rotate left once then pop.</p>
+<h3>Rotate Right</h3>
+<p>The rightmost member will walk over to become the leftmost member the number of times specified on the right input.</p>
+<h6>picture</h6>
+<h3>Length</h3>
+<p>It will output the number of arrows in the inputted bus.</p>
+<h6>picture</h6>
+<h3>Function</h3>
+<p>You can create custom functions in flang. They need to have their own name, number of inputs and outputs, and logic.</p>
+<p>They look like this.</p>
+<h6>picture</h6>
+<h4>Sixth Program</h4>
+<p>Print the letter "q" sixteen times.</p>
+<h6>picture</h6>
+<h2>Language Features</h2>
+<h3>You can include C libraries.</h3>
+<h3>Typelessness</h3>
+<p>An "a" is the same as a 97.</p>
+<p>If you want to get a number in its text form, add it to the character for 0 ('0')</p>
+<p>For the converse, subtract.</p>
+<h3>Busses</h3>
+<p>If you want to have many characters in a bus from constants, you can use double quotes, and the constant will output a bus of the characters in the quotes.</p>
+<h6>picture</h6>
+<p>If you want a bus of numbers, separate them by commas.</p>
+<h3>Nothing is tacked down.</h3>
+<p>Normies will flip out since there aren't variables, much less types or objects.</p>
+<h3>Easy to visualize.</h3>
