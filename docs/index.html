@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8"/>
 <title>Flang Intermediate Language Tutorial</title>
+<style>
+a.spoiler {
+	background-color: black;
+color: black;
+}
+a.spoiler:hover {
+	background-color: white;
+}
+</style>
 </head>
 <body>
 <h1>Flang Intermediate Language</h1>
@@ -14,6 +23,7 @@
 <h1>Tutorial</h1>
 <p>Flang is a functional language, which means it's made of functions. Functions take input(s) and give output(s). Some people call these arguments and return values. Flang calls inputs and outputs "pipes." The outputs of functions are sent to inputs of others along pipes.</p>
 <p>A function will wait until all of its inputs are "satisfied," which means they have been outputted by another function. Once its inputs are satisfied, it will run somepoint in the future. Once it runs, its outputs will become satisfied and the cycle will repeat.</p>
+<p>Pipes lose their values and become dissatisfied when they are an input of a function and it runs, just for that input.</p>
 <h3>Syntax</h3>
 <pre>pipe ;function pipe pipe
 pipe pipe pipe function pipe pipe
@@ -29,9 +39,8 @@ input function output output output</pre>
 ;main
 'h h
 h Putchar puth
-puth '\n endl
-endl Putchar putendl
-putendl #0 success</pre>
+puth '\n nl
+nl Putchar</pre>
 <h4>Precompiler Code</h4>
 <p>Flang compiles to C, which compiles to assembly, which then compiles to machine language. Compiling is translating a programming/computer language to another.</p>
 <p><pre>#include<stdio.h></pre> tells our program to put the C code from /usr/include/stdio.h at the top of our program right before it is compiled from C to assembly. This is actually just C precompiler code, so it's standard and there are lots of resources on how to use it. In flang, anything that begins with a "#" (pronounced "pound") is precompiler code. The only other preprocessor function that is useful is "#define" which changes the last word on the line to the second.</p>
@@ -40,8 +49,25 @@ putendl #0 success</pre>
 <p>A lambda is a fancy word for a function that makes a function. In flang, the syntax that defines a function looks very similar to how you run a function, but the inputs are swapped with the outputs.</p>
 <p><pre>;main</pre> means we are defining a function named "main"</p>
 <p>All subsequent functions before the next lambda are the code in the function we are defining.</p>
-<h3>Regular Lines</h3>
-<p>Regular lines of code go as follows: inputs name output</p>
-<p>As mentioned before, whenever something is satisfied, `
+<h3>Statements</h3>
+<p>Statements, or "regular lines of code" go as follows: inputs name output</p>
+<p>As mentioned before, whenever something is satisfied, it may run. At least one function must be running at every point in time before the end of the program.</p>
+<p>There is another rule. Functions without inputs must run before functions with inputs. There is only one statement in the example code that has no input: "'h h"</p>
+<p>There is only one run ordrer for the example program. Go back through the code and see what order each line will run in.</p>
+<p>The answer (hover over to see) is <a href="" class="spoiler">in order</a></p>
+<h3>What the Code Does</h3>
+<pre>#include&lt;stdio.h&gt;
+#define Putchar putchar</pre>
+<p>Make the Putchar function available. Putchar becomes the same as putchar (further documentation accessed by "man 3 putchar"), which displays a character on your terminal and outputs it.</p>
+<pre>;main</pre>
+<p>Define the function main with no pipes. All statements until the next lambda are automatically part of the function currently defined.</p>
+<pre>'h h</pre>
+<p>Functions that start with a "'" are special. They output the character after the "'" for all outputs (once all inputs have been satisfied, of course).</p>
+<pre>h Putchar puth</pre>
+<p>The pipe, h is inputted into Putchar. h has the value of the character "h." We would get an "h" on our screen because that's what putchar and Putchar do. It outputs an "h" into puth.</p>
+<pre>puth '\n nl</pre>
+<p>Put "\n" (a newline) into nl once puth is satisfied.</p>
+<pre>nl Putchar</pre>
+<p>Print out a carrage return (a newline).</p>
 </body>
 </html>
