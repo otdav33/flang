@@ -32,7 +32,7 @@ To be more specific:
 <pre>output ;lambda input input
 input input input function output output
 input function output output output</pre>
-<h3>Example Program</h3>
+<h2>Example Program</h2>
 <pre>#include&lt;stdio.h&gt;
 #define Putchar putchar
 
@@ -45,17 +45,17 @@ nl Putchar</pre>
 <p>Flang compiles to C, which compiles to assembly, which then compiles to machine language. Compiling is translating a programming/computer language to another.</p>
 <p><pre>#include<stdio.h></pre> tells our program to put the C code from /usr/include/stdio.h at the top of our program right before it is compiled from C to assembly. This is actually just C precompiler code, so it's standard and there are lots of resources on how to use it. In flang, anything that begins with a "#" (pronounced "pound") is precompiler code. The only other preprocessor function that is useful is "#define" which changes the last word on the line to the second.</p>
 <p>All occourences of "Putchar" become "putchar" in the code above.</p>
-<h3>Lambdas</h3>
+<h4>Lambdas</h4>
 <p>A lambda is a fancy word for a function that makes a function. In flang, the syntax that defines a function looks very similar to how you run a function, but the inputs are swapped with the outputs.</p>
 <p><pre>;main</pre> means we are defining a function named "main"</p>
 <p>All subsequent functions before the next lambda are the code in the function we are defining.</p>
-<h3>Statements</h3>
+<h4>Statements</h4>
 <p>Statements, or "regular lines of code" go as follows: inputs name output</p>
 <p>As mentioned before, whenever something is satisfied, it may run. At least one function must be running at every point in time before the end of the program.</p>
 <p>There is another rule. Functions without inputs must run before functions with inputs. There is only one statement in the example code that has no input: "'h h"</p>
 <p>There is only one run ordrer for the example program. Go back through the code and see what order each line will run in.</p>
 <p>The answer (hover over to see) is <a href="" class="spoiler">in order</a></p>
-<h3>What the Code Does</h3>
+<h4>What the Code Does</h4>
 <pre>#include&lt;stdio.h&gt;
 #define Putchar putchar</pre>
 <p>Make the Putchar function available. Putchar becomes the same as putchar (further documentation accessed by "man 3 putchar"), which displays a character on your terminal and outputs it.</p>
@@ -69,5 +69,28 @@ nl Putchar</pre>
 <p>Put "\n" (a newline) into nl once puth is satisfied.</p>
 <pre>nl Putchar</pre>
 <p>Print out a carrage return (a newline).</p>
+<h2>Example Program</h2>
+<pre>#include<stdio.h>
+#define Putchar putchar
+#define Getchar(a) getchar()
+
+;main start
+start Getchar c
+c Putchar start</pre>
+<p>getchar is a C function which takes no arguments, and returns a character inputted to the screen. It only gives characters after a newline, and gives them in order without skipping.</p>
+<p><pre>#define Getchar(a) getchar()</pre> says that 
+<p>The program will repeat lines of input.</p>
+<h2>Example Program</h2>
+<pre>#include<stdio.h>
+#define Putchar putchar
+#define Getchar(a) getchar()
+
+;main same
+'\n newline
+same Getchar c
+c Putchar put
+put put newline Equal same different</pre>
+<p>Equal is a function built into flang. It takes three inputs, and gives two outputs. If the first and third input are equal, it will give the second input on the first output. Otherwise, it use the second output instead.</p>
+<p>This program <a href="" class="spoiler">will repeat a line of input.</a>
 </body>
 </html>
