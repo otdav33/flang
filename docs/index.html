@@ -14,7 +14,6 @@ a.spoiler:hover {
 </style>
 </head>
 <body>
-<h1>BS</h1>
 <h2>Flang Intermediate Language</h2>
 <p>A simple functional programming language</p>
 <p>"F" is for flow.</p>
@@ -101,3 +100,43 @@ c P</pre>
 p G c
 c P p</pre>
 <p>Will print input every enter.</p>
+<pre>#include&lt;stdio.h&gt;
+#define P putchar
+#define G(a) getchar()
+;main
+G a
+G b
+a P
+b P</pre>
+<p>Will repeat two characters in either order.</p>
+<pre>#include&lt;stdio.h&gt;
+#define P putchar
+#define G(a) getchar()
+;main
+G a
+G b
+a P
+a b &lt; c
+c P</pre>
+<p>Will repeat two characters in the original order.</p>
+<pre>#include&lt;stdio.h&gt;
+#define P putchar
+#define G(a) getchar()
+;main
+G a
+G b
+b P
+b a &lt; c
+c P</pre>
+<p>Will repeat two characters in the opposite order.</p>
+<pre>#include&lt;stdio.h&gt;
+#define P putchar
+#define G(a) getchar()
+;main
+G a
+G b
+G c
+b P
+b a c &lt; d
+d P</pre>
+<p>Will repeat two characters in the opposite order, requiring three characters to be inputted.</p>
