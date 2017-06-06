@@ -102,47 +102,44 @@ def runline(scope, line, noruns):
     if line.function[0] == "'":
         for o in line.outputs:
             print(o + " = '" + line.function[1:] + "';")
-            satisfy(scope, line, noruns, o)
+            satisfy(scope, noruns, o)
     elif line.function[0] == "#":
         for o in line.outputs:
             print(o + " = " + line.function[1:] + ";")
-            satisfy(scope, line, noruns, o)
+            satisfy(scope, noruns, o)
     elif line.function == ">":
         for o in line.outputs:
             print(o + " = " + line.inputs[0] + ";")
-            satisfy(scope, line, noruns, o)
+            satisfy(scope, noruns, o)
     elif line.function == "<":
         print("if (" + line.inputs[0] + " < " + line.inputs[2] + ") {")
         temp = copy.deepcopy(scope) #copy scope
         print(line.outputs[0] + " = " + line.inputs[1] + ";")
-        satisfy(scope, line, noruns, line.outputs[0])
+        satisfy(scope, noruns, line.outputs[0])
         print("} else {")
         temp = copy.deepcopy(scope) #copy scope again
         print(line.outputs[1] + " = " + line.inputs[1] + ";")
-        satisfy(scope, line, noruns, line.outputs[1])
+        satisfy(scope, noruns, line.outputs[1])
         print("}")
     else:
         for operator in "+-*/%":
             if operator == line.function:
                 for o in line.outputs:
-                    print(o + " = ")
+                    out = o + " = "
                     for i in line.inputs:
-                        print(i + " " + line.function + " ")
-                    retval = retval[:-2]
-                    print(";")
+                        out += i + " " + line.function + " "
+                    out = out[:-2] + ";"
+                    print(out)
                 break
         else:
+            out = line.function + "("
             args = ""
-            if len(line.outputs) < 2:
-                print(line.outputs[0] + " = " + line.function + "(")
-            else:
-                print(line.function + "(")
-                for o in line.outputs:
-                    args += "&" + o + ", "
+            for o in line.outputs:
+                args += "&" + o + ", "
             for i in line.inputs:
                 args += i + ", "
             args = args[:-2]
-            print(args + ");")
+            print(out + args + ");")
     #make sure you return right.
     for lo in line.outputs:
         for fo in scope[0].outputs:
@@ -150,8 +147,8 @@ def runline(scope, line, noruns):
                 print("return_" + lo + " = &" + lo + ";")
                 break
 
-def satisfy(scope, line, noruns, o):
-    for l in scope:
+def satisfy(scope, noruns, o):
+    for l in scope[1:]:
         for i in range(len(l.outputs)):
             if l.outputs[i] == o:
                 l.satisfied[i] += 1
@@ -160,7 +157,7 @@ def satisfy(scope, line, noruns, o):
             product *= s
         if product:
             l.satisfied = [i - 1 for i in l.satisfied]
-            runfunc(scope, line, noruns);
+            runline(scope, l, noruns);
 
 for s in scopes:
     print(function_declaration(scopes, s))
@@ -182,4 +179,6 @@ for s in scopes:
     variables = list(set(variables))
     for v in variables:
         print(get_type(scopes, s, v) + " " + v + ";")
+    for o in s[0].outputs:
+        satisfy(s, "", o)
     print("}")
