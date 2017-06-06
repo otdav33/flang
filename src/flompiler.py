@@ -4,7 +4,6 @@ import sys
 import copy
 
 flprog = sys.stdin.read() #take input from stdin
-output = "" #final thing to print out
 
 class Line():
     #line of flang code
@@ -29,7 +28,6 @@ class Line():
 
 def parse(string):
     #will give a list of scopes, each a list of lines e.g. [[Line(), Line()], [Line()]]
-    global output
     retval = []
     lines = string.split("\n")
     lf = 1 #line number starting over for each function
@@ -38,13 +36,13 @@ def parse(string):
             continue
         current = Line(l)
         if current.function == "":
-            sys.stderr.write("Every line must have a function.\n")
+            sys.stderr.write("Every line must have a function.")
             exit(0)
         if current.function[0] == ";":
             lf = 1
             retval += [[]]
         elif lf == 1:
-            sys.stderr.write("Programs must begin with lambdas.\n")
+            sys.stderr.write("Programs must begin with lambdas.")
             exit(0)
         retval[-1] += [current]
         lf += 1
@@ -59,7 +57,7 @@ def get_type(scopes, scope, name):
         for o in l.outputs:
             #determine the type
             if "<" in o:
-                if o[:o.index("<")+1] == name: #same variable
+                if o[:o.index("<")] == name: #same variable
                     #if the type is explicit, use it.
                     return o[o.index("<")+1:-1]
             elif o == name:
@@ -89,50 +87,39 @@ def get_type(scopes, scope, name):
         return t
     return "double /*type not found*/"
 
-def variable_declaration(scopes, scope, line_number, output_number):
-    """return a variable declaration if we are provided with the first
-        occourence of the variable."""
-    name = scope[line_number].outputs[output_number]
-    #make sure we are the first
-    for i in range(line_number):
-        for j in range(output_number):
-            if scope[i].outputs[j] == name:
-                return ""
-    return get_type(scopes, scope, name) + " " + name + ";\n"
-
 def function_declaration(scopes, scope):
-    start = "void " + scope[0].function + "("
+    start = "void " + scope[0].function[1:] + "("
     args = ""
     for i in scope[0].inputs:
-        args += "void *input_" + i + ", "
+        args += "void *" + i + ", "
     for o in scope[0].outputs:
         args += get_type(scopes, scope, o) + " *return_" + o + ", "
-    return start + args[:-2] + ");\n"
+    return start + args[:-2] + ");"
 
 def runline(scope, line, noruns):
     retval = ""
     if line.function[0] == "'":
         for o in line.outputs:
-            retval += o + " = '" + line.function[1:] + "';\n"
+            retval += o + " = '" + line.function[1:] + "';"
             retval += satisfy(o)
     elif line.function[0] == "#":
         for o in line.outputs:
-            retval += o + " = " + line.function[1:] + ";\n"
+            retval += o + " = " + line.function[1:] + ";"
             retval += satisfy(o)
     elif line.function == ">":
         for o in line.outputs:
-            retval += o + " = " + line.inputs[0] + ";\n"
+            retval += o + " = " + line.inputs[0] + ";"
             retval += satisfy(o)
     elif line.function == "<":
-        retval += "if (" + line.inputs[0] + " < " + line.inputs[2] + ") {\n"
+        retval += "if (" + line.inputs[0] + " < " + line.inputs[2] + ") {"
         temp = copy.deepcopy(scope) #copy scope
-        retval += line.outputs[0] + " = " + line.inputs[1] + ";\n"
+        retval += line.outputs[0] + " = " + line.inputs[1] + ";"
         retval += satisfy(line.outputs[0])
-        retval += "} else {\n"
+        retval += "} else {"
         temp = copy.deepcopy(scope) #copy scope again
-        retval += line.outputs[1] + " = " + line.inputs[1] + ";\n"
+        retval += line.outputs[1] + " = " + line.inputs[1] + ";"
         retval += satisfy(line.outputs[1])
-        retval += "}\n"
+        retval += "}"
     else:
         for operator in "+-*/%":
             if operator == line.function:
@@ -141,7 +128,7 @@ def runline(scope, line, noruns):
                     for i in line.inputs:
                         retval += i + " " + line.function + " "
                     retval = retval[:-2]
-                    retval += ";\n"
+                    retval += ";"
                 break
         else:
             args = ""
@@ -154,10 +141,32 @@ def runline(scope, line, noruns):
             for i in line.inputs:
                 args += i + ", "
             args = args[:-2]
-            retval += args + ");\n"
+            retval += args + ");"
     #make sure you return right.
     for lo in line.outputs:
         for fo in scope[0].outputs:
             if lo == fo:
-                retval += "return_" + lo + " = &" + lo + ";\n"
+                retval += "return_" + lo + " = &" + lo + ";"
                 break
+
+for s in scopes:
+    print(function_declaration(scopes, s))
+
+print("")
+
+def nameofvar(name):
+    temp = name
+    if "<" in name:
+        temp = name[:name.index("<")]
+    return temp
+
+for s in scopes:
+    print(function_declaration(scopes, s)[:-1] + " {")
+    variables = []
+    for l in s:
+        for o in l.outputs:
+            variables += [nameofvar(o)]
+    variables = list(set(variables))
+    for v in variables:
+        print(get_type(scopes, s, v) + " " + v + ";")
+    print("}")
