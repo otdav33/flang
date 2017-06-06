@@ -97,57 +97,59 @@ def function_declaration(scopes, scope):
     return start + args[:-2] + ");"
 
 def runline(scope, line, noruns):
-    retval = ""
     if line.function[0] == "'":
         for o in line.outputs:
-            retval += o + " = '" + line.function[1:] + "';"
-            retval += satisfy(o)
+            print(o + " = '" + line.function[1:] + "';")
+            satisfy(o)
     elif line.function[0] == "#":
         for o in line.outputs:
-            retval += o + " = " + line.function[1:] + ";"
-            retval += satisfy(o)
+            print(o + " = " + line.function[1:] + ";")
+            satisfy(o)
     elif line.function == ">":
         for o in line.outputs:
-            retval += o + " = " + line.inputs[0] + ";"
-            retval += satisfy(o)
+            print(o + " = " + line.inputs[0] + ";")
+            satisfy(o)
     elif line.function == "<":
-        retval += "if (" + line.inputs[0] + " < " + line.inputs[2] + ") {"
+        print("if (" + line.inputs[0] + " < " + line.inputs[2] + ") {")
         temp = copy.deepcopy(scope) #copy scope
-        retval += line.outputs[0] + " = " + line.inputs[1] + ";"
-        retval += satisfy(line.outputs[0])
-        retval += "} else {"
+        print(line.outputs[0] + " = " + line.inputs[1] + ";")
+        satisfy(line.outputs[0])
+        print("} else {")
         temp = copy.deepcopy(scope) #copy scope again
-        retval += line.outputs[1] + " = " + line.inputs[1] + ";"
-        retval += satisfy(line.outputs[1])
-        retval += "}"
+        print(line.outputs[1] + " = " + line.inputs[1] + ";")
+        satisfy(line.outputs[1])
+        print("}")
     else:
         for operator in "+-*/%":
             if operator == line.function:
                 for o in line.outputs:
-                    retval += o + " = "
+                    print(o + " = ")
                     for i in line.inputs:
-                        retval += i + " " + line.function + " "
+                        print(i + " " + line.function + " ")
                     retval = retval[:-2]
-                    retval += ";"
+                    print(";")
                 break
         else:
             args = ""
             if len(line.outputs) < 2:
-                retval += line.outputs[0] + " = " + line.function + "("
+                print(line.outputs[0] + " = " + line.function + "(")
             else:
-                retval += line.function + "("
+                print(line.function + "(")
                 for o in line.outputs:
                     args += "&" + o + ", "
             for i in line.inputs:
                 args += i + ", "
             args = args[:-2]
-            retval += args + ");"
+            print(args + ");")
     #make sure you return right.
     for lo in line.outputs:
         for fo in scope[0].outputs:
             if lo == fo:
-                retval += "return_" + lo + " = &" + lo + ";"
+                print("return_" + lo + " = &" + lo + ";")
                 break
+
+def satisfy(scope, line, noruns):
+
 
 for s in scopes:
     print(function_declaration(scopes, s))
