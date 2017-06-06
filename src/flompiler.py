@@ -11,6 +11,7 @@ class Line():
         self.inputs = []
         self.function = ""
         self.outputs = []
+        self.satisfied = []
         words = line.split(" ")
         #start processing inputs, move to function, then outputs
         phase = "inputs"
@@ -25,6 +26,7 @@ class Line():
                 phase = "outputs"
             elif phase == "outputs":
                 self.outputs += [w]
+                self.satisfied += [0]
 
 def parse(string):
     #will give a list of scopes, each a list of lines e.g. [[Line(), Line()], [Line()]]
@@ -100,24 +102,24 @@ def runline(scope, line, noruns):
     if line.function[0] == "'":
         for o in line.outputs:
             print(o + " = '" + line.function[1:] + "';")
-            satisfy(o)
+            satisfy(scope, line, noruns, o)
     elif line.function[0] == "#":
         for o in line.outputs:
             print(o + " = " + line.function[1:] + ";")
-            satisfy(o)
+            satisfy(scope, line, noruns, o)
     elif line.function == ">":
         for o in line.outputs:
             print(o + " = " + line.inputs[0] + ";")
-            satisfy(o)
+            satisfy(scope, line, noruns, o)
     elif line.function == "<":
         print("if (" + line.inputs[0] + " < " + line.inputs[2] + ") {")
         temp = copy.deepcopy(scope) #copy scope
         print(line.outputs[0] + " = " + line.inputs[1] + ";")
-        satisfy(line.outputs[0])
+        satisfy(scope, line, noruns, line.outputs[0])
         print("} else {")
         temp = copy.deepcopy(scope) #copy scope again
         print(line.outputs[1] + " = " + line.inputs[1] + ";")
-        satisfy(line.outputs[1])
+        satisfy(scope, line, noruns, line.outputs[1])
         print("}")
     else:
         for operator in "+-*/%":
@@ -148,8 +150,17 @@ def runline(scope, line, noruns):
                 print("return_" + lo + " = &" + lo + ";")
                 break
 
-def satisfy(scope, line, noruns):
-
+def satisfy(scope, line, noruns, o):
+    for l in scope:
+        for i in range(len(l.outputs)):
+            if l.outputs[i] == o:
+                l.satisfied[i] += 1
+        product = 1;
+        for s in l.satisfied:
+            product *= s
+        if product:
+            l.satisfied = [i - 1 for i in l.satisfied]
+            runfunc(scope, line, noruns);
 
 for s in scopes:
     print(function_declaration(scopes, s))
