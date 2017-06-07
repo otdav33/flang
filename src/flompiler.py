@@ -19,6 +19,7 @@ class Line():
             if phase == "inputs":
                 if w[0] >= "a" and w[0] <= "z": #if lowercase
                     self.inputs += [w]
+                    self.satisfied += [0]
                 else:
                     phase = "function"
             if phase == "function":
@@ -26,7 +27,6 @@ class Line():
                 phase = "outputs"
             elif phase == "outputs":
                 self.outputs += [w]
-                self.satisfied += [0]
 
 def parse(string):
     #will give a list of scopes, each a list of lines e.g. [[Line(), Line()], [Line()]]
@@ -149,7 +149,9 @@ def runline(scopes, scope, line, noruns):
             args = args[:-2]
             print(line.function + "(" + args + ");")
             for o in line.outputs:
-                print("if (out_" + nameofvar(o) + ") {"
+                n = nameofvar(o)
+                print("if (out_" + n + ") {")
+                print(n + " = *out_" + n + ";")
                 satisfy(scopes, scope, o, noruns)
                 print("}")
             print("}")
@@ -169,9 +171,7 @@ def satisfy(scopes, scope, o, noruns):
                 for s in l.satisfied:
                     product *= s
                 if product:
-                    print("satisfied is ", l.satisfied, "for ", l.inputs, l.function, l.outputs)
                     l.satisfied = [i - 1 for i in l.satisfied]
-                    print("satisfied is ", l.satisfied)
                     runline(scopes, scope, l, noruns);
 
 for s in scopes:
@@ -182,15 +182,15 @@ print("")
 for s in scopes:
     print(function_declaration(scopes, s)[:-1] + " {")
     variables = []
-    for l in s:
+    for l in s[1:]:
         for o in l.outputs:
             variables += [nameofvar(o)]
     variables = list(set(variables))
     for v in variables:
         print(get_type(scopes, s, v) + " " + v + ";")
-    for l in s:
+    for l in s[1:]:
         if len(l.inputs) == 0:
-            runline(s, l, "")
+            runline(scopes, s, l, "")
     for o in s[0].outputs:
         satisfy(scopes, s, o, "")
     print("}")
