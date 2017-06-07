@@ -98,28 +98,34 @@ def function_declaration(scopes, scope):
         args += get_type(scopes, scope, o) + " *return_" + o + ", "
     return start + args[:-2] + ");"
 
-def runline(scope, line, noruns):
+def nameofvar(name):
+    temp = name
+    if "<" in name:
+        temp = name[:name.index("<")]
+    return temp
+
+def runline(scopes, scope, line, noruns):
     if line.function[0] == "'":
         for o in line.outputs:
             print(o + " = '" + line.function[1:] + "';")
-            satisfy(scope, noruns, o)
+            satisfy(scopes, scope, o, noruns)
     elif line.function[0] == "#":
         for o in line.outputs:
             print(o + " = " + line.function[1:] + ";")
-            satisfy(scope, noruns, o)
+            satisfy(scopes, scope, o, noruns)
     elif line.function == ">":
         for o in line.outputs:
             print(o + " = " + line.inputs[0] + ";")
-            satisfy(scope, noruns, o)
+            satisfy(scopes, scope, o, noruns)
     elif line.function == "<":
         print("if (" + line.inputs[0] + " < " + line.inputs[2] + ") {")
         temp = copy.deepcopy(scope) #copy scope
         print(line.outputs[0] + " = " + line.inputs[1] + ";")
-        satisfy(scope, noruns, line.outputs[0])
+        satisfy(scopes, scope, line.outputs[0], noruns)
         print("} else {")
         temp = copy.deepcopy(scope) #copy scope again
         print(line.outputs[1] + " = " + line.inputs[1] + ";")
-        satisfy(scope, noruns, line.outputs[1])
+        satisfy(scopes, scope, line.outputs[1], noruns)
         print("}")
     else:
         for operator in "+-*/%":
@@ -132,14 +138,21 @@ def runline(scope, line, noruns):
                     print(out)
                 break
         else:
-            out = line.function + "("
+            print("{")
+            for i in line.outputs:
+                print(get_type(scopes, scope, i) + " *out_" + nameofvar(i) + " = NULL;")
             args = ""
-            for o in line.outputs:
-                args += "&" + o + ", "
             for i in line.inputs:
-                args += i + ", "
+                args += "&" + nameofvar(i) + ", "
+            for o in line.outputs:
+                args += "out_" + nameofvar(o) + ", "
             args = args[:-2]
-            print(out + args + ");")
+            print(line.function + "(" + args + ");")
+            for o in line.outputs:
+                print("if (out_" + nameofvar(o) + ") {"
+                satisfy(scopes, scope, o, noruns)
+                print("}")
+            print("}")
     #make sure you return right.
     for lo in line.outputs:
         for fo in scope[0].outputs:
@@ -147,28 +160,24 @@ def runline(scope, line, noruns):
                 print("return_" + lo + " = &" + lo + ";")
                 break
 
-def satisfy(scope, noruns, o):
+def satisfy(scopes, scope, o, noruns):
     for l in scope[1:]:
-        for i in range(len(l.outputs)):
-            if l.outputs[i] == o:
+        for i in range(len(l.inputs)):
+            if l.inputs[i] == o:
                 l.satisfied[i] += 1
-        product = 1;
-        for s in l.satisfied:
-            product *= s
-        if product:
-            l.satisfied = [i - 1 for i in l.satisfied]
-            runline(scope, l, noruns);
+                product = 1;
+                for s in l.satisfied:
+                    product *= s
+                if product:
+                    print("satisfied is ", l.satisfied, "for ", l.inputs, l.function, l.outputs)
+                    l.satisfied = [i - 1 for i in l.satisfied]
+                    print("satisfied is ", l.satisfied)
+                    runline(scopes, scope, l, noruns);
 
 for s in scopes:
     print(function_declaration(scopes, s))
 
 print("")
-
-def nameofvar(name):
-    temp = name
-    if "<" in name:
-        temp = name[:name.index("<")]
-    return temp
 
 for s in scopes:
     print(function_declaration(scopes, s)[:-1] + " {")
@@ -179,6 +188,9 @@ for s in scopes:
     variables = list(set(variables))
     for v in variables:
         print(get_type(scopes, s, v) + " " + v + ";")
+    for l in s:
+        if len(l.inputs) == 0:
+            runline(s, l, "")
     for o in s[0].outputs:
-        satisfy(s, "", o)
+        satisfy(scopes, s, o, "")
     print("}")
