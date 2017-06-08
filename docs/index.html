@@ -116,7 +116,7 @@ b P</pre>
 G a
 G b
 a P
-a b &lt; c
+a b &gt; c
 c P</pre>
 <p>Will repeat two characters in the original order.</p>
 <pre>#include&lt;stdio.h&gt;
@@ -126,9 +126,9 @@ c P</pre>
 G a
 G b
 b P
-b a &lt; c
+b a &gt; c
 c P</pre>
-<p>Will repeat two characters in the opposite order.</p>
+<p>Will repeat the first two of three characters in order.</p>
 <pre>#include&lt;stdio.h&gt;
 #define P putchar
 #define G(a) getchar()
@@ -136,7 +136,7 @@ c P</pre>
 G a
 G b
 G c
-b P
-b a c &lt; d
+a P
+c a b &gt; d
 d P</pre>
 <p>Will repeat two characters in the opposite order, requiring three characters to be inputted.</p>

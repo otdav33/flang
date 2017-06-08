@@ -191,6 +191,6 @@ for s in scopes:
     for l in s[1:]:
         if len(l.inputs) == 0:
             runline(scopes, s, l, "")
-    for o in s[0].outputs:
+    for o in s[0].inputs:
         satisfy(scopes, s, o, "")
     print("}")
