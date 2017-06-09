@@ -163,16 +163,37 @@ def runline(scopes, scope, line, noruns):
                 break
 
 def satisfy(scopes, scope, o, noruns):
-    for l in scope[1:]:
-        for i in range(len(l.inputs)):
-            if l.inputs[i] == o:
-                l.satisfied[i] += 1
-                product = 1;
-                for s in l.satisfied:
-                    product *= s
-                if product:
-                    l.satisfied = [i - 1 for i in l.satisfied]
-                    runline(scopes, scope, l, noruns);
+    for n in noruns:
+        if o == n:
+            return
+    a = []
+    for l in range(len(scope))[1:]:
+        for i in range(len(scope[l].inputs)):
+            if scope[l].inputs[i] == o:
+                a += [[l, i]]
+    if len(a) == 1:
+        [t, i] = a[0]
+        l = scope[t]
+        l.satisfied[i] += 1
+        product = 1;
+        for s in l.satisfied:
+            product *= s
+        if product:
+            l.satisfied = [i - 1 for i in l.satisfied]
+            runline(scopes, scope, l, noruns);
+    elif len(a) > 1:
+        for [t, i] in a:
+            c = copy.deepcopy(scope)
+            l = c[t]
+            print(nameofvar(l.inputs[i]) + "_satisfied = 0;\ndo {")
+            l.satisfied[i] += 1
+            product = 1;
+            for s in l.satisfied:
+                product *= s
+            if product:
+                l.satisfied = [i - 1 for i in l.satisfied]
+            runline(scopes, c, l, noruns + [l.inputs[i]]);
+            print("} while (" + nameofvar(l.inputs[i]) + "_satisfied-- > 0);")
 
 for s in scopes:
     print(function_declaration(scopes, s))
@@ -190,7 +211,7 @@ for s in scopes:
         print(get_type(scopes, s, v) + " " + v + ";")
     for l in s[1:]:
         if len(l.inputs) == 0:
-            runline(scopes, s, l, "")
+            runline(scopes, s, l, [""])
     for o in s[0].inputs:
-        satisfy(scopes, s, o, "")
+        satisfy(scopes, s, o, [""])
     print("}")
