@@ -163,6 +163,7 @@ def runline(scopes, scope, line, noruns):
                 break
 
 def satisfy(scopes, scope, o, noruns):
+    o = nameofvar(o)
     for n in noruns:
         if o == n:
             return
@@ -182,10 +183,10 @@ def satisfy(scopes, scope, o, noruns):
             l.satisfied = [i - 1 for i in l.satisfied]
             runline(scopes, scope, l, noruns);
     elif len(a) > 1:
+        print("int " + o + "_satisfied = 0;\ndo {")
         for [t, i] in a:
             c = copy.deepcopy(scope)
             l = c[t]
-            print(nameofvar(l.inputs[i]) + "_satisfied = 0;\ndo {")
             l.satisfied[i] += 1
             product = 1;
             for s in l.satisfied:
@@ -193,7 +194,7 @@ def satisfy(scopes, scope, o, noruns):
             if product:
                 l.satisfied = [i - 1 for i in l.satisfied]
             runline(scopes, c, l, noruns + [l.inputs[i]]);
-            print("} while (" + nameofvar(l.inputs[i]) + "_satisfied-- > 0);")
+        print("} while (" + o + "_satisfied-- > 0);")
 
 for s in scopes:
     print(function_declaration(scopes, s))
